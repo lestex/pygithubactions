@@ -24,7 +24,8 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip setuptools wheel
-        pip install --upgrade flake8 isort blue mypy types-PyYAML bandit safety
+        pip install flake8==4.0.1
+        pip install --upgrade isort blue mypy types-PyYAML bandit safety
 
     - name: Run lint
       run: isort .
