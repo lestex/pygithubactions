@@ -1,0 +1,48 @@
+[project]
+
+name = "pygithubactions"
+version = "0.1.0" 
+description = "Github actions core library implemented in python"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["pygithubactions"]
+
+authors = [
+  {name = "Andrey Larin", email = "lestex@gmail.com" }
+]
+
+# For a list of valid classifiers, see https://pypi.org/classifiers/
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = []
+
+[project.urls]  # Optional
+"Homepage" = "https://github.com/lestex/pygithubactions.git"
+"Source" = "https://github.com/lestex/pygithubactions.git"
+
+[build-system]
+# These are the assumed default build requirements from pip:
+# https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+  "pygithubactions",
+  "pygithubactions.core",
+  "pygithubactions.context",
+]
+
+[tool.isort]
+profile = "google"
+src_paths = ["pygithubaction", "tests"]
+multi_line_output = 3
+
+[tool.mypy]
+ignore_missing_imports = true
