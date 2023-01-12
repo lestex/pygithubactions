@@ -1,0 +1,27 @@
+# http://editorconfig.org
+
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Docstrings and comments use max_line_length = 79
+[*.py]
+max_line_length = 119
+
+# Makefiles always use tabs for indentation
+[Makefile]
+indent_style = tab
+
+[*.md]
+max_line_length = 0
+trim_trailing_whitespace = false
+
+[*.{yaml,yml}]
+indent_size = 2

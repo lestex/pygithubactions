@@ -1,2 +1,2 @@
-# py-githubaction
-Github actions core library implemented in python
+# py-githubactions
+Github actions core library implemented in python.
