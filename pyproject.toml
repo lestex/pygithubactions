@@ -58,3 +58,7 @@ select = [
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
+"tests/*.py" = ["E501"]
+
+[tool.ruff.mccabe]
+max-complexity = 3

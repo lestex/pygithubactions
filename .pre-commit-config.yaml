@@ -1,8 +1,7 @@
 # See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
+  rev: v4.4.0
   hooks:
   - id: check-added-large-files
   - id: check-toml
@@ -21,3 +20,8 @@ repos:
   hooks:
     - id: blue
       name: blue
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: v0.0.219
+  hooks:
+    - id: ruff
+      args: ["--force-exclude"]

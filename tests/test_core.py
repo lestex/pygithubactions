@@ -26,7 +26,7 @@ def test_is_debug():
 
 def test_set_failed_sets_correct_exit_code_failure_message(capsys):
     failure_message = 'Failure message'
-    with pytest.raises(SystemExit) as e:   # noqa
+    with pytest.raises(SystemExit) as e:
         set_failed(failure_message)
 
     captured = capsys.readouterr()

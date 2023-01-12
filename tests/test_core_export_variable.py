@@ -23,7 +23,7 @@ class TestExportVariable:
     def test_legacy_export_variable_escapes_variable_names(self, capsys):
         export_variable('special char var \r\n,:', 'special val')
         got = capsys.readouterr().out
-        want = f'::set-env name=special char var %0D%0A%2C%3A::special val{os.linesep}'   # noqa
+        want = f'::set-env name=special char var %0D%0A%2C%3A::special val{os.linesep}'
         assert got == want
 
     @requires_env('local')
@@ -49,7 +49,7 @@ class TestExportVariable:
             export_variable('my var', 'var val')
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my var<<{DELIMITER}{os.linesep}var val{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my var<<{DELIMITER}{os.linesep}var val{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_export_variable_handles_boolean_inputs(
@@ -62,7 +62,7 @@ class TestExportVariable:
             export_variable('my var', True)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my var<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my var<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_export_variable_handles_number_inputs(
@@ -75,7 +75,7 @@ class TestExportVariable:
             export_variable('my var', 5)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my var<<{DELIMITER}{os.linesep}5{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my var<<{DELIMITER}{os.linesep}5{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_export_variable_does_not_allow_delimiter_value(
