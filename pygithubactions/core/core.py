@@ -129,7 +129,7 @@ def get_multiline_input(
     if not trim_whitespace:
         return inputs_list
 
-    return list(map(lambda i: i.strip(), inputs_list))
+    return [i.strip() for i in inputs_list]
 
 
 def set_output(name: str, value: Any) -> None:
