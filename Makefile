@@ -34,7 +34,7 @@ help:
 	{printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 tag: ## create and push a tag for the current version
-	echo $(VERSION_PYSCRIPT)
+	echo $(TAG)
 	# git tag $(TAG)
 	# git push origin $(TAG)
 
