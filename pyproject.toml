@@ -1,7 +1,7 @@
 [project]
 
 name = "pygithubactions"
-version = "0.1.0"
+version = "0.1.1"
 description = "Github actions core library implemented in python"
 readme = "README.md"
 requires-python = ">=3.10"
