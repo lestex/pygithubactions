@@ -64,7 +64,7 @@ def get_input(
 
     Returns:
         value (str): - Input value.
-    """   # noqa
+    """
     norm_name = name.replace(' ', '_').upper()
     value = os.environ.get(f'INPUT_{norm_name}', '')
 
@@ -91,7 +91,7 @@ def get_boolean_input(
 
     Returns:
         bool
-    """  # noqa
+    """
     true_values = ['true', 'True', 'TRUE']
     false_values = ['false', 'False', 'FALSE']
     value = get_input(name, required, trim_whitespace)
@@ -122,14 +122,14 @@ def get_multiline_input(
 
     Returns:
         list[str]: List of inputs.
-    """  # noqa
+    """
     inputs = get_input(name, required, trim_whitespace)
     inputs_list = [i for i in inputs.split('\n') if i != '']
 
     if not trim_whitespace:
         return inputs_list
 
-    return list(map(lambda i: i.strip(), inputs_list))
+    return [i.strip() for i in inputs_list]
 
 
 def set_output(name: str, value: Any) -> None:

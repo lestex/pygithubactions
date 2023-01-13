@@ -40,4 +40,4 @@ def prepare_key_value_message(key: str, value: Any) -> str:
             f'the delimiter: {delimiter}'
         )
 
-    return f'{key}<<{delimiter}{os.linesep}{converted_value}{os.linesep}{delimiter}'   # noqa
+    return f'{key}<<{delimiter}{os.linesep}{converted_value}{os.linesep}{delimiter}'

@@ -41,7 +41,7 @@ class TestSaveState:
             save_state('my state', 'out val')
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my state<<{DELIMITER}{os.linesep}out val{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my state<<{DELIMITER}{os.linesep}out val{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_save_state_handles_boolean_inputs(
@@ -54,7 +54,7 @@ class TestSaveState:
             save_state('my state', True)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my state<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my state<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_save_state_handles_numbers_inputs(
@@ -67,7 +67,7 @@ class TestSaveState:
             save_state('my state', 65)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my state<<{DELIMITER}{os.linesep}65{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my state<<{DELIMITER}{os.linesep}65{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_set_output_does_not_allow_delimiter_value(

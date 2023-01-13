@@ -24,8 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip setuptools wheel
-        pip install flake8==4.0.1
-        pip install --upgrade isort blue mypy types-PyYAML bandit safety
+        pip install --upgrade isort blue mypy ruff bandit safety
 
     - name: Run lint
       run: isort .
@@ -33,10 +32,8 @@ jobs:
     - name: Run blue formatter
       run: make format
 
-    - name: Run flake8
-      run: |
-        flake8 . --count --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=4
+    - name: Run ruff
+      run: ruff .
 
     - name: Run mypy / static types
       run: make static-check

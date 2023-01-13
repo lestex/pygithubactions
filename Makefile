@@ -72,7 +72,7 @@ format: isort ## formats python
 	@blue .
 
 lint: format ## run python flake8 linter tool
-	@flake8 --exclude .git,.venv pygithubactions
+	@ruff .
 
 static-check: ## runs static checks with mypy
 	@mypy pygithubactions

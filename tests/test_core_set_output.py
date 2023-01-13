@@ -18,7 +18,7 @@ class TestSetOutput:
         set_output('some output', 'some value')
         captured = capsys.readouterr()
 
-        want = f'{os.linesep}::set-output name=some output::some value{os.linesep}'   # noqa
+        want = f'{os.linesep}::set-output name=some output::some value{os.linesep}'
         assert captured.out == want
 
     @requires_env('local')
@@ -48,7 +48,7 @@ class TestSetOutput:
             set_output('my out', 'out val')
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my out<<{DELIMITER}{os.linesep}out val{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my out<<{DELIMITER}{os.linesep}out val{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_set_output_handles_boolean_inputs(
@@ -62,7 +62,7 @@ class TestSetOutput:
             set_output('my out', True)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my out<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my out<<{DELIMITER}{os.linesep}true{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_set_output_handles_number_inputs(
@@ -76,7 +76,7 @@ class TestSetOutput:
             set_output('my out', 5)
 
         got = read_file_func(self.command, tmp_path)
-        want = f'my out<<{DELIMITER}{os.linesep}5{os.linesep}{DELIMITER}{os.linesep}'   # noqa
+        want = f'my out<<{DELIMITER}{os.linesep}5{os.linesep}{DELIMITER}{os.linesep}'
         assert got == want
 
     def test_set_output_does_not_allow_delimiter_value(
