@@ -1,3 +1,4 @@
+import json
 import os
 
 import pytest
@@ -20,6 +21,8 @@ TEST_INPUT_ENV_VARS = {
     'INPUT_LIST_WITH_TRAILING_WHITESPACE': '  val1  \n  val2  \n  ',
     # Save state
     'STATE_TEST_1': 'state_val',
+    # events
+    'GITHUB_EVENT_NAME': 'push',
 }
 
 
@@ -65,3 +68,17 @@ def read_file_func():
         return data
 
     return read_file
+
+
+@pytest.fixture(scope='session', autouse=True)
+def create_event_file_func():
+    def create_file(command: str, event: dict, tmp: str) -> str:
+        path = os.path.join(tmp, f'{command}')
+        os.environ[f'GITHUB_{command}'] = path
+
+        with open(path, 'a', encoding='utf8') as f:
+            f.write(json.dumps(event))
+
+        return path
+
+    return create_file
