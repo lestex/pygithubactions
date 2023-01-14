@@ -1,6 +1,7 @@
 import os
 from typing import Any
 
+from pygithubactions.core.command import issue
 from pygithubactions.core.command import issue_command
 from pygithubactions.core.file_command import issue_file_command
 from pygithubactions.core.file_command import prepare_key_value_message
@@ -151,6 +152,15 @@ def set_output(name: str, value: Any) -> None:
 
     print()
     issue_command('set-output', {'name': name}, to_command_value(value))
+
+
+def set_command_echo(enabled: bool) -> None:
+    """Enables or disables the echoing of commands into stdout
+    for the rest of the step.
+    Echoing is disabled by default if ACTIONS_STEP_DEBUG is not set.
+    """
+    msg = 'on' if enabled else 'off'
+    issue('echo', msg)
 
 
 def set_failed(message: str) -> None:

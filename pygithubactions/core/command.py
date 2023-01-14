@@ -47,6 +47,10 @@ def issue_command(command: str, props: dict[str, Any], message: str) -> None:
     print(cmd, end=os.linesep)
 
 
+def issue(name: str, message: str = '') -> None:
+    issue_command(name, {}, message)
+
+
 def escape_data(d: Any) -> str:
     s = to_command_value(d)
     s = s.replace('%', '%25')
