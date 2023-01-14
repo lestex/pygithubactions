@@ -1,5 +1,5 @@
 import os
-from typing import Any
+from typing import Any, Callable
 
 from pygithubactions.core.command import issue
 from pygithubactions.core.command import issue_command
@@ -255,6 +255,39 @@ def info(message: str) -> None:
         message (str): info message.
     """
     print(message, end=os.linesep)
+
+
+def start_group(name: str) -> None:
+    """Begin an output group.
+    Output until the next `groupEnd` will be foldable in this group.
+
+    Args:
+        message (str): The name of the output group.
+    """
+    issue('group', name)
+
+
+def end_group() -> None:
+    """End an output group."""
+    issue('endgroup')
+
+
+def group(name: str, func: Callable) -> Any:
+    """Wrap an asynchronous function call in a group.
+    Returns the same type as the function itself.
+
+    Args:
+        name (str): The name of the group.
+        func (Callable): The function to wrap in the group.
+    """
+    start_group(name)
+
+    try:
+        result = func()
+    finally:
+        end_group()
+
+    return result
 
 
 # -----------------------------------------------------------------------

@@ -101,3 +101,27 @@ def test_set_command_can_disable_echoing(capsys):
     core.set_command_echo(enabled=False)
     captured = capsys.readouterr()
     assert captured.out == f'::echo::off{os.linesep}'
+
+
+def test_start_group_starts_new_group(capsys):
+    core.start_group('my-group')
+    captured = capsys.readouterr()
+    assert captured.out == f'::group::my-group{os.linesep}'
+
+
+def test_end_group_ends_new_group(capsys):
+    core.end_group()
+    captured = capsys.readouterr()
+    assert captured.out == f'::endgroup::{os.linesep}'
+
+
+def test_group_wraps_call_in_group(capsys):
+    def wrapped():
+        print('inside my group')
+        return True
+
+    result = core.group('mygroup', wrapped)
+    got = capsys.readouterr().out
+    want = f'::group::mygroup{os.linesep}inside my group\n::endgroup::{os.linesep}'
+    assert result is True
+    assert got == want
