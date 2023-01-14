@@ -38,6 +38,11 @@ def test_set_failed_escapes_failure_message(capsys):
     assert captured.out == f'::error::Failure %0D%0A%0Amessage%0D{os.linesep}'
 
 
+def test_get_state_gets_action_state():
+    got = core.get_state('TEST_1')
+    assert got == 'state_val'
+
+
 def test_debug_sets_correct_message(capsys):
     core.debug('Debug')
     captured = capsys.readouterr()

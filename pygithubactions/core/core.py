@@ -280,3 +280,15 @@ def save_state(name: str, value: Any) -> None:
         return
 
     issue_command('save-state', {'name': name}, to_command_value(value))
+
+
+def get_state(name: str) -> str:
+    """Gets the value of an state set by this action's main execution.
+
+    Args:
+        name (str): name of the state to get
+
+    Returns:
+        (str):
+    """
+    return os.environ.get(f'STATE_{name}', '')

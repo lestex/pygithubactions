@@ -18,6 +18,8 @@ TEST_INPUT_ENV_VARS = {
     'INPUT_WITH_TRAILING_WHITESPACE': '  some val  ',
     'INPUT_MY_INPUT_LIST': 'val1\nval2\nval3',
     'INPUT_LIST_WITH_TRAILING_WHITESPACE': '  val1  \n  val2  \n  ',
+    # Save state
+    'STATE_TEST_1': 'state_val',
 }
 
 
