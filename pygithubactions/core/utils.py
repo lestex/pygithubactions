@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import json
-from typing import Any
+from typing import Any, Optional
 
 
 def to_command_value(inp: Any) -> str:
@@ -47,7 +47,7 @@ class AnnotationProperties:
 
 
 def to_command_properties(
-    annotation_properties: AnnotationProperties | None = None,
+    annotation_properties: Optional[AnnotationProperties] = None,
 ) -> dict:
     """Returns CommandProperties object
 

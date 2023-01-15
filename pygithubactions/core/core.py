@@ -1,6 +1,7 @@
 import os
-from typing import Any
+from typing import Any, Callable, Optional
 
+from pygithubactions.core.command import issue
 from pygithubactions.core.command import issue_command
 from pygithubactions.core.file_command import issue_file_command
 from pygithubactions.core.file_command import prepare_key_value_message
@@ -153,6 +154,15 @@ def set_output(name: str, value: Any) -> None:
     issue_command('set-output', {'name': name}, to_command_value(value))
 
 
+def set_command_echo(enabled: bool) -> None:
+    """Enables or disables the echoing of commands into stdout
+    for the rest of the step.
+    Echoing is disabled by default if ACTIONS_STEP_DEBUG is not set.
+    """
+    msg = 'on' if enabled else 'off'
+    issue('echo', msg)
+
+
 def set_failed(message: str) -> None:
     """Sets the action status to failed.
 
@@ -188,7 +198,7 @@ def debug(message: str) -> None:
 
 
 def error(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds an error issue.
 
@@ -205,7 +215,7 @@ def error(
 
 
 def warning(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds a warning issue.
 
@@ -222,7 +232,7 @@ def warning(
 
 
 def notice(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds a notice issue
 
@@ -245,6 +255,39 @@ def info(message: str) -> None:
         message (str): info message.
     """
     print(message, end=os.linesep)
+
+
+def start_group(name: str) -> None:
+    """Begin an output group.
+    Output until the next `groupEnd` will be foldable in this group.
+
+    Args:
+        message (str): The name of the output group.
+    """
+    issue('group', name)
+
+
+def end_group() -> None:
+    """End an output group."""
+    issue('endgroup')
+
+
+def group(name: str, func: Callable) -> Any:
+    """Wrap an asynchronous function call in a group.
+    Returns the same type as the function itself.
+
+    Args:
+        name (str): The name of the group.
+        func (Callable): The function to wrap in the group.
+    """
+    start_group(name)
+
+    try:
+        result = func()
+    finally:
+        end_group()
+
+    return result
 
 
 # -----------------------------------------------------------------------
@@ -270,3 +313,15 @@ def save_state(name: str, value: Any) -> None:
         return
 
     issue_command('save-state', {'name': name}, to_command_value(value))
+
+
+def get_state(name: str) -> str:
+    """Gets the value of an state set by this action's main execution.
+
+    Args:
+        name (str): name of the state to get
+
+    Returns:
+        (str):
+    """
+    return os.environ.get(f'STATE_{name}', '')
