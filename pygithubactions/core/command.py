@@ -1,5 +1,5 @@
 import os
-from typing import Any
+from typing import Any, Optional
 
 from pygithubactions.core.utils import to_command_value
 
@@ -19,9 +19,9 @@ class Command:
 
     def __init__(
         self,
-        command: str | None,
-        properties: dict[str, Any] | None,
-        message: str | None,
+        command: Optional[str],
+        properties: Optional[dict[str, Any]],
+        message: Optional[str],
     ) -> None:
         self.command = command or 'missing.command'
         self.properties = properties

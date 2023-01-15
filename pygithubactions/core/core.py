@@ -1,5 +1,5 @@
 import os
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 from pygithubactions.core.command import issue
 from pygithubactions.core.command import issue_command
@@ -198,7 +198,7 @@ def debug(message: str) -> None:
 
 
 def error(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds an error issue.
 
@@ -215,7 +215,7 @@ def error(
 
 
 def warning(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds a warning issue.
 
@@ -232,7 +232,7 @@ def warning(
 
 
 def notice(
-    message: str, properties: AnnotationProperties | None = None
+    message: str, properties: Optional[AnnotationProperties] = None
 ) -> None:
     """Adds a notice issue
 
