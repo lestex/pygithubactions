@@ -1,5 +1,5 @@
 import os
-from typing import Any, Callable, Optional
+from typing import Any, Callable, List, Optional
 
 from pygithubactions.core.command import issue
 from pygithubactions.core.command import issue_command
@@ -112,7 +112,7 @@ def get_boolean_input(
 
 def get_multiline_input(
     name: str, required: bool = False, trim_whitespace: bool = True
-) -> list[str]:
+) -> List[str]:
     """Gets the values of an multiline input.  Each value is also trimmed.
 
     Args:

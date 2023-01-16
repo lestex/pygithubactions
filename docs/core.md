@@ -229,16 +229,18 @@ The `to_win32_path` function converts input paths to Windows-style paths. These
 functions work independently of the underlying runner operating system.
 
 ```python
-to_posix_path('\\foo\\bar') // => /foo/bar
-to_win32_path('/foo/bar') // => \foo\bar
+from pygithubactions import path
+
+path.to_posix_path('\\foo\\bar') // => /foo/bar
+path.to_win32_path('/foo/bar') // => \foo\bar
 ```
 
 The `to_platform_path` function converts input paths to the expected value on the runner's operating system.
 
 ```python
 // On a Windows runner.
-to_platform_path('/foo/bar') // => \foo\bar
+path.to_platform_path('/foo/bar') // => \foo\bar
 
 // On a Linux runner.
-to_platform_path('\\foo\\bar') // => /foo/bar
+path.to_platform_path('\\foo\\bar') // => /foo/bar
 ```
