@@ -1,5 +1,5 @@
 import os
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from pygithubactions.core.utils import to_command_value
 
@@ -20,7 +20,7 @@ class Command:
     def __init__(
         self,
         command: Optional[str],
-        properties: Optional[dict[str, Any]],
+        properties: Optional[Dict[str, Any]],
         message: Optional[str],
     ) -> None:
         self.command = command or 'missing.command'
@@ -42,7 +42,7 @@ class Command:
         return cmd_str
 
 
-def issue_command(command: str, props: dict[str, Any], message: str) -> None:
+def issue_command(command: str, props: Dict[str, Any], message: str) -> None:
     cmd = Command(command, props, message)
     print(cmd, end=os.linesep)
 

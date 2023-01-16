@@ -4,7 +4,7 @@ name = "pygithubactions"
 version = "0.1.2"
 description = "Github actions core library implemented in python"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 keywords = ["pygithubactions"]
 
 authors = [
