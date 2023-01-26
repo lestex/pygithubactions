@@ -2,16 +2,10 @@
 .DEFAULT_GOAL := help
 
 TEST_RESULTS := test_results
-APP_NAME := actions-repository-filtering
 SYSTEM_PYTHON := python
 
-define VERSION_PYSCRIPT
-import pkg_resources
-version = pkg_resources.get_distribution('pygithubactions').version
-endef
-export VERSION_PYSCRIPT
 
-VERSION := $(SYSTEM_PYTHON) -c "$$VERSION_PYSCRIPT"
+VERSION := $$(hatch version)
 TAG := v$(VERSION)
 
 define BROWSER_PYSCRIPT
@@ -34,9 +28,8 @@ help:
 	{printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 tag: ## create and push a tag for the current version
-	echo $(TAG)
-	# git tag $(TAG)
-	# git push origin $(TAG)
+	git tag $(TAG)
+	git push origin $(TAG)
 
 release: ## package and upload a release
 	@echo "For further usage."
