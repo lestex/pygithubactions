@@ -1,7 +1,5 @@
 [project]
-
 name = "pygithubactions"
-version = "0.1.3"
 description = "Github actions core library implemented in python"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -16,6 +14,7 @@ classifiers = [
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Build Tools",
   "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -23,6 +22,7 @@ classifiers = [
 ]
 
 dependencies = []
+dynamic = ["version"]
 
 [project.urls]  # Optional
 "Homepage" = "https://github.com/lestex/pygithubactions.git"
@@ -31,8 +31,8 @@ dependencies = []
 [build-system]
 # These are the assumed default build requirements from pip:
 # https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
-requires = ["setuptools>=43.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.setuptools]
 packages = [
@@ -59,8 +59,13 @@ select = [
 ]
 
 [tool.ruff.per-file-ignores]
-"__init__.py" = ["F401"]
+"__init__.py" = ["F401", "F811"]
 "tests/*.py" = ["E501"]
 
 [tool.ruff.mccabe]
 max-complexity = 3
+
+[tool.hatch]
+
+[tool.hatch.version]
+path = "pygithubactions/__init__.py"
