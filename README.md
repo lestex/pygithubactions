@@ -12,3 +12,7 @@ from pygithubactions import core
 ```
 
 Refer to [core](docs/core.md) for a documentation.
+
+### Why
+It is simple, we love python, why not use it to write Github Actions code.
+The example on how to use the library - [https://github.com/lestex/action-pygithubactions](https://github.com/lestex/action-pygithubactions)
